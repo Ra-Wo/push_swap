@@ -18,6 +18,7 @@ the last one.
 
 ## Compiling and running
 run ```make```. Execute pushswap with the list of number you want : ```./push_swap 4 8 5 1 2 3```
+for checker : ```./push_swap 4 8 5 1 2 3 | ./checker 4 8 5 1 2 3```
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
