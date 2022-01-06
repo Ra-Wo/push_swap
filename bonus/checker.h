@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:04:46 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/06 12:04:50 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:35:22 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ void			get_length(t_var *vars, char **argv);
 int				ft_isalpha(int character);
 char			*ft_str_dup(const char *s1);
 int				ft_strcmp(char *s1, char *s2);
+void			check_instruction(t_var *vars, int i);
 
 // instruction 
 void			sa(int *a, int num);
 void			sb(int *a, int num);
-void			ss(int *b, int *a, int num);
+void			ss(int *b, int *a, int size_a, int size_b);
 void			pa(t_var *vars);
 void			pb(t_var *vars);
 void			ra(t_var *vars);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:05:15 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/06 12:05:18 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:37:51 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,7 @@ void	sort(t_var *vars, int i)
 {
 	while (vars->instruction[++i])
 	{
-		if (!ft_strcmp(vars->instruction[i], "sa"))
-			sa(vars->a, vars->size_a);
-		else if (!ft_strcmp(vars->instruction[i], "sb"))
-			sb(vars->b, vars->size_b);
-		else if (!ft_strcmp(vars->instruction[i], "pa"))
-			pa(vars);
-		else if (!ft_strcmp(vars->instruction[i], "pb"))
-			pb(vars);
-		else if (!ft_strcmp(vars->instruction[i], "ra"))
-			ra(vars);
-		else if (!ft_strcmp(vars->instruction[i], "rb"))
-			rb(vars);
-		else if (!ft_strcmp(vars->instruction[i], "rr"))
-			rr(vars);
-		else if (!ft_strcmp(vars->instruction[i], "rra"))
-			rra(vars);
-		else if (!ft_strcmp(vars->instruction[i], "rrb"))
-			rrb(vars);
-		else if (!ft_strcmp(vars->instruction[i], "rrr"))
-			rrr(vars);
+		check_instruction(vars, i);
 	}
 }
 
@@ -81,6 +62,11 @@ int	main(int argc, char **argv)
 	get_instruction(&vars);
 	get_params(&vars, argv);
 	vars.b = malloc(sizeof(char) * vars.size_a);
+	if (!vars.b)
+	{
+		free(vars.a);
+		return (0);
+	}
 	sort(&vars, i);
 	if (check_a(&vars))
 		write(1, "KO", 2);

@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:52:12 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/06 15:25:54 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:31:56 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int		ft_isalpha(int character);
 void	get_length(t_var *vars, char **argv);
 void	sa(int *a, int num);
 void	sb(int *a, int num);
-void	ss(int *b, int *a, int num);
 void	pa(t_var *vars);
 void	pb(t_var *vars);
 void	ra(t_var *vars);
