@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:05:15 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/06 16:37:51 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:03:32 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,21 @@ void	get_instruction(t_var *vars)
 		free(line);
 		line = get_next_line(0);
 	}
+	free(line);
 	vars->instruction = ft_split(all_lines, '\n');
 }
 
-void	sort(t_var *vars, int i)
+void	sort(t_var *vars)
 {
+	int	i;
+
+	i = -1;
 	while (vars->instruction[++i])
 	{
 		check_instruction(vars, i);
+		free(vars->instruction[i]);
 	}
+	free(vars->instruction);
 }
 
 int	check_a(t_var *vars)
@@ -51,26 +57,41 @@ int	check_a(t_var *vars)
 	return (0);
 }
 
+void	free_instru(t_var *vars)
+{
+	int	x;
+
+	x = 0;
+	free(vars->a);
+	while (vars->instruction[x])
+		free(vars->instruction[x++]);
+	free(vars->instruction);
+}
+
 int	main(int argc, char **argv)
 {
 	t_var	vars;
-	int		i;
+	int		x;
 
-	i = -1;
+	check_argv(argv);
+	x = 0;
+	while (argv[x])
+		x++;
+	if (argc == 1)
+		return (0);
 	vars.size_a = argc - 1;
 	vars.size_b = 0;
-	get_instruction(&vars);
 	get_params(&vars, argv);
+	get_instruction(&vars);
 	vars.b = malloc(sizeof(char) * vars.size_a);
 	if (!vars.b)
-	{
-		free(vars.a);
-		return (0);
-	}
-	sort(&vars, i);
+		return (free_instru(&vars), 0);
+	sort(&vars);
 	if (check_a(&vars))
 		write(1, "KO", 2);
 	else
 		write(1, "OK", 2);
+	free(vars.a);
+	free(vars.b);
 	return (0);
 }

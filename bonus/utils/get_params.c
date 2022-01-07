@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:08:00 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/06 15:08:02 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:03:16 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ static int	deal_with_string(char *str, int *params, int i)
 	return (i);
 }
 
-static void	check_dup(int *nums, int num, int in, int total)
+static void	check_dup(int *nums, int num, int in, t_var *vars)
 {
 	int	x;
 
 	x = 0;
-	while (x++ < total - 1)
+	while (x++ < vars->size_a - 1)
 	{
 		if (x == in)
 			continue ;
 		if (num == nums[x])
 		{
 			free(nums);
-			write(2, "Error", 5);
+			write(2, "Error\n", 6);
 			exit(1);
 		}
 	}
@@ -83,7 +83,7 @@ void	get_params(t_var *vars, char **argv)
 	i = 0;
 	while (i < vars->size_a)
 	{
-		check_dup(params, params[i], i, vars->size_a);
+		check_dup(params, params[i], i, vars);
 		i++;
 	}
 	vars->a = params;

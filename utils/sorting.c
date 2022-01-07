@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:14:59 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/06 15:16:05 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/07 10:54:29 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	*sorting(t_var *vars)
 	if (!new)
 	{
 		free(vars->a);
-		free(vars->b);
 		exit(0);
 	}
 	copy_arr(vars, new);

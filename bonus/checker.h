@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:04:46 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/06 16:35:22 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/07 16:25:20 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int				ft_isalpha(int character);
 char			*ft_str_dup(const char *s1);
 int				ft_strcmp(char *s1, char *s2);
 void			check_instruction(t_var *vars, int i);
+unsigned int	ft_strlen(const char *str);
+void			check_argv(char **argv);
 
 // instruction 
 void			sa(int *a, int num);

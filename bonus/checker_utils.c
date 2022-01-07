@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:33:30 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/06 16:40:30 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/07 16:29:17 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ void	check_instruction(t_var *vars, int i)
 		ss(vars->b, vars->a, vars->size_a, vars->size_b);
 	else
 		error_exit(vars);
+}
+
+void	check_argv(char **argv)
+{
+	int	i;
+	
+	i = 0;
+	while (argv[i])
+	{
+		if (ft_strlen(argv[i]) <= 0)
+		{
+			write(1, "Error\n", 6);
+			exit(1);
+		}
+		i++;
+	}
 }
