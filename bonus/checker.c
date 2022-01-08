@@ -17,17 +17,21 @@ void	get_instruction(t_var *vars)
 {
 	char	*line;
 	char	*all_lines;
+	char	*tmp;
 
 	line = get_next_line(0);
 	all_lines = ft_str_dup("");
 	while (line != NULL)
 	{
+		tmp = all_lines;
 		all_lines = ft_string_join(all_lines, line);
 		free(line);
+		free(tmp);
 		line = get_next_line(0);
 	}
 	free(line);
 	vars->instruction = ft_split(all_lines, '\n');
+	free(all_lines);
 }
 
 void	sort(t_var *vars)
