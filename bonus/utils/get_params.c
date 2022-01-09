@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:08:00 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/07 17:03:16 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/09 17:54:26 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	deal_with_string(char *str, int *params, int i)
 	x = 0;
 	while (lines[x])
 	{
-		params[i++] = ft_atoi(lines[x]);
+		params[i++] = ft_atoi(lines[x], params);
 		free(lines[x++]);
 	}
 	free(lines);
@@ -77,7 +77,7 @@ void	get_params(t_var *vars, char **argv)
 		if (isnotnum(argv[x]))
 			i = deal_with_string(argv[x], params, i);
 		else
-			params[i++] = ft_atoi(argv[x]);
+			params[i++] = ft_atoi(argv[x], params);
 		x++;
 	}
 	i = 0;

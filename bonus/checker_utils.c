@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:33:30 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/07 16:29:17 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/09 19:01:33 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_instruction(t_var *vars, int i)
 void	check_argv(char **argv)
 {
 	int	i;
-	
+
 	i = 0;
 	while (argv[i])
 	{

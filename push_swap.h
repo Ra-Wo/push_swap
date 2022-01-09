@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:52:12 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/07 13:47:43 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/09 16:18:02 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct v {
 }	t_var1;
 
 void	get_params(t_var *vars, char **argv);
-int		ft_atoi(const char *str);
+int		ft_atoi(const char *str, int *params);
 char	**ft_split(char const *s, char c);
 int		ft_isalpha(int character);
 void	get_length(t_var *vars, char **argv);

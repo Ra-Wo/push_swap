@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:04:46 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/07 16:25:20 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/09 17:53:49 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ unsigned int	ft_string_len(const char *str);
 char			**ft_split(char const *s, char c);
 char			*ft_string_join(char const *s1, char const *s2);
 void			get_params(t_var *vars, char **argv);
-int				ft_atoi(const char *str);
+int				ft_atoi(const char *str, int *params);
 void			get_length(t_var *vars, char **argv);
 int				ft_isalpha(int character);
 char			*ft_str_dup(const char *s1);
