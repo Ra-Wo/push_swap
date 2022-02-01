@@ -11,7 +11,7 @@ SRCS 		=	push_swap.c									\
 				sort_ab.c									\
 				./utils/check_sort.c						\
 				./utils/ft_atoi.c							\
-				./utils/ft_isalpha.c						\
+				./utils/ft_isdigit.c						\
 				./utils/ft_split.c							\
 				./utils/get_length_and_check_params.c		\
 				./utils/get_params.c						\
@@ -46,7 +46,7 @@ SRCS_BONUS	=	./bonus/checker.c							\
 				./bonus/instruction/sb.c					\
 				./bonus/instruction/ss.c					\
 				./bonus/utils/ft_atoi.c						\
-				./bonus/utils/ft_isalpha.c					\
+				./bonus/utils/ft_isdigit.c					\
 				./bonus/utils/ft_split.c					\
 				./bonus/utils/ft_strcmp.c					\
 				./bonus/utils/ft_string_join.c				\
@@ -54,17 +54,17 @@ SRCS_BONUS	=	./bonus/checker.c							\
 				./bonus/utils/get_length_and_check_params.c	\
 				./bonus/utils/get_params.c
 
-OBJS		= $(SRCS:c=o)
+OBJS		= $(SRCS:.c=.o)
 
-OBJS_BONUS	= $(SRCS_BONUS:c=o)
+OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
 
 all: $(NAME) $(NAME_BONUS)
 
-$(NAME) : $(OBJS)
-	@$(CC) $^ -o $@
+$(NAME) : $(OBJS) 
+	@$(CC) $(OBJS) -o $(NAME)
 
 $(NAME_BONUS) : $(OBJS_BONUS)
-	@$(CC) $^ -o $@
+	@$(CC) $(OBJS_BONUS) -o $(NAME_BONUS)
 	@echo " \n\n\
 		\n\
 	 ██▓███   █    ██   ██████  ██░ ██   ██████  █     █░ ▄▄▄       ██▓███   \n \
@@ -76,13 +76,11 @@ $(NAME_BONUS) : $(OBJS_BONUS)
 	░▒ ░     ░░▒░ ░ ░ ░ ░▒  ░ ░ ▒ ░▒░ ░░ ░▒  ░ ░  ▒ ░ ░    ▒   ▒▒ ░░▒ ░      \n \
 	░░        ░░░ ░ ░ ░  ░  ░   ░  ░░ ░░  ░  ░    ░   ░    ░   ▒   ░░        \n \
 		            ░           ░   ░  ░  ░      ░      ░          ░  ░      \n \
-	MADE WITH 💖 AT 1337\n\
-	\
+	\n\
 	"
 
 %.o : %.c push_swap.h
 	@$(CC) $(CFLAGS) $< -c -o $@
-	@printf "\033[1;36m	compiling => %-10.10s\r" $< 
 
 clean: 
 	@rm -f $(OBJS)

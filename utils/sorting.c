@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:14:59 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/07 10:54:29 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/11 09:00:00 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	sort(int *new, t_var *vars)
 		sort(new, vars);
 }
 
-int	*sorting(t_var *vars)
+int	*sorting(t_var *vars, t_var1 *v)
 {
 	int	*new;
 
@@ -55,7 +55,8 @@ int	*sorting(t_var *vars)
 	if (!new)
 	{
 		free(vars->a);
-		exit(0);
+		free(v->sorted_array);
+		exit(1);
 	}
 	copy_arr(vars, new);
 	sort(new, vars);

@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 12:05:15 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/08 15:35:51 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/11 10:13:41 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	get_instruction(t_var *vars)
 	}
 	free(line);
 	vars->instruction = ft_split(all_lines, '\n');
+	if (!vars->instruction)
+	{
+		free(vars->a);
+		exit(1);
+	}
 	free(all_lines);
 }
 

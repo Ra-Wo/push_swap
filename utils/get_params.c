@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 10:45:49 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/09 16:18:43 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:33:30 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ static int	deal_with_string(char *str, int *params, int i)
 	int		x;
 
 	lines = ft_split(str, ' ');
+	if (!lines)
+	{
+		free(params);
+		exit(1);
+	}
 	x = 0;
 	while (lines[x])
 	{
@@ -42,19 +47,19 @@ static int	deal_with_string(char *str, int *params, int i)
 	return (i);
 }
 
-void	check_dup(int *nums, int num, int in, int total)
+static void	check_dup(int *params, int num, int in, t_var *vars)
 {
 	int	x;
 
 	x = 0;
-	while (x++ < total - 1)
+	while (x++ < vars->size_a - 1)
 	{
 		if (x == in)
 			continue ;
-		if (num == nums[x])
+		if (num == params[x])
 		{
-			free(nums);
-			write(2, "Error", 5);
+			free(params);
+			write(2, "Error\n", 6);
 			exit(1);
 		}
 	}
@@ -76,14 +81,14 @@ void	get_params(t_var *vars, char **argv)
 	{
 		if (isnotnum(argv[x]))
 			i = deal_with_string(argv[x], params, i);
-		else
+		else if (argv[x][0] != '\0')
 			params[i++] = ft_atoi(argv[x], params);
 		x++;
 	}
 	i = 0;
 	while (i < vars->size_a)
 	{
-		check_dup(params, params[i], i, vars->size_a);
+		check_dup(params, params[i], i, vars);
 		i++;
 	}
 	vars->a = params;

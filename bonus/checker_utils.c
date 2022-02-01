@@ -6,14 +6,19 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:33:30 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/09 19:01:33 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/11 10:08:28 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-static void	error_exit(t_var *vars)
+static void	error_exit(t_var *vars, int i)
 {
+	while (vars->instruction[i])
+	{
+		free(vars->instruction[i++]);
+	}
+	free(vars->instruction);
 	free(vars->a);
 	free(vars->b);
 	write(2, "Error\n", 6);
@@ -45,7 +50,7 @@ void	check_instruction(t_var *vars, int i)
 	else if (!ft_strcmp(vars->instruction[i], "ss"))
 		ss(vars->b, vars->a, vars->size_a, vars->size_b);
 	else
-		error_exit(vars);
+		error_exit(vars, i);
 }
 
 void	check_argv(char **argv)

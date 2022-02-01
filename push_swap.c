@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:31:22 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/09 17:49:19 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:38:13 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void	init(t_var *vars, t_var1 *v, int argc, char *argv[])
 {
 	vars->size_a = argc - 1;
 	vars->size_b = 0;
-	v->x = 0;
-	v->c = 0;
 	get_params(vars, argv);
 	v->size_sorted_array = vars->size_a;
 	if (vars->size_a > 1)
-		v->sorted_array = sorting(vars);
+		v->sorted_array = sorting(vars, v);
 	vars->b = malloc(sizeof(int) * vars->size_b);
 	if (!vars->b)
 	{
+		if (vars->size_a > 1)
+			free(v->sorted_array);
 		free(vars->a);
 		exit(1);
 	}
@@ -65,31 +65,27 @@ int	index_less_num(t_var *vars)
 	return (index);
 }
 
-static int	check_length_number(t_var1 *v, t_var *vars)
+static void	solve(t_var1 *v, t_var *vars)
 {
-	if (v->size_sorted_array == 3)
-		return (deal_with_tree_nums(vars), free(vars->a),
-			free(vars->b), free(v->sorted_array), 0);
+	if (v->size_sorted_array == 3 || v->size_sorted_array == 1)
+		deal_with_three_nums(vars);
 	else if (v->size_sorted_array == 2)
 	{
 		if (vars->a[0] > vars->a[1])
 			sa(vars->a, vars->size_a);
-		free(vars->a);
-		free(vars->b);
-		free(v->sorted_array);
-		return (0);
 	}
-	else if (v->size_sorted_array == 5)
-		return (deal_with_five_nums(vars), free(vars->a),
-			free(vars->b), free(v->sorted_array), 0);
-	else if (v->size_sorted_array == 4)
-		return (deal_with_five_nums(vars), free(vars->a),
-			free(vars->b), free(v->sorted_array), 0);
-	if (v->size_sorted_array <= 250)
-		v->part = (v->size_sorted_array / 6);
-	else if (v->size_sorted_array > 250)
-		v->part = (v->size_sorted_array / 12);
-	return (1);
+	else if (v->size_sorted_array == 5 || v->size_sorted_array == 4)
+		deal_with_five_nums(vars);
+	else
+	{
+		if (v->size_sorted_array <= 250)
+			v->part = (v->size_sorted_array / 6);
+		else
+			v->part = (v->size_sorted_array / 12);
+		v->chu = v->part;
+		first_sort(vars, v);
+		second_sort(vars);
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -99,12 +95,14 @@ int	main(int argc, char *argv[])
 
 	init(&vars, &v, argc, argv);
 	if (!check_valid(&vars))
-		return (free(vars.a), free(vars.b), 0);
-	if (check_length_number(&v, &vars) == 0)
+	{
+		free(vars.a);
+		free(vars.b);
+		if (vars.size_a > 1)
+			free(v.sorted_array);
 		return (0);
-	v.chu = v.part;
-	first_sort(&vars, &v);
-	second_sort(&vars);
+	}
+	solve(&v, &vars);
 	free(vars.a);
 	free(vars.b);
 	free(v.sorted_array);

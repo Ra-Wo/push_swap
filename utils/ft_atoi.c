@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 18:42:53 by roudouch          #+#    #+#             */
-/*   Updated: 2022/01/09 19:07:38 by roudouch         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:32:53 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,16 @@ void	check_err(const char *str, int i, int *params)
 
 	x = 0;
 	if (str[i] == '-' || str[i] == '\0')
+	{
 		exit_print_error(params);
-	while (str[i + x] <= '9' && str[i + x] >= '0')
+	}
+	else
+	{
+		while (str[i + x] <= '9' && str[i + x] >= '0')
 		x++;
-	if (str[i + x] != '\0')
-		exit_print_error(params);
+		if (str[i + x] != '\0')
+			exit_print_error(params);
+	}
 }
 
 int	ft_atoi(const char *str, int *params)
